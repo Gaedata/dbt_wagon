@@ -17,4 +17,3 @@ renamed as (
 )
 
 select * from renamed
-WHERE products_id IS NULL
