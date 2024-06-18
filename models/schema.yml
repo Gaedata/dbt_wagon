@@ -56,3 +56,13 @@ sources:
             description: coûts logistiques
           - name: ship_cost
             description: frais de port
+models:
+  - name: int_sales_margin
+    description: suite à la jointure sales et product
+    columns:
+          - name: primary_key_sales
+            description: la clé primaire
+            tests:
+              - unique
+              - not_null
+              
