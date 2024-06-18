@@ -22,5 +22,6 @@ products_id,
 revenue,
 quantity,
 purchase_price,
+purchase_cost,
 revenue-purchase_cost as margin
 FROM test
