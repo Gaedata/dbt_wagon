@@ -167,4 +167,37 @@ models:
           - name: click
             tests:
               - not_null
-              
+  - name: int_campaigns_day
+    description: group by de int campaigns sur la date
+    columns:
+          - name: date_date
+            description: la clé primaire
+            tests:
+              - unique
+              - not_null
+          - name: ads_cost
+            tests:
+              - not_null
+          - name: ads_impression
+            tests:
+              - not_null
+          - name: ads_clicks
+            tests:
+              - not_null
+  - name: finance_campaigns_day
+    description: résultats financiers des campagnes par jour pour la team finance
+    columns:
+          - name: date_date
+            description: la clé primaire, date du jour
+            tests:
+              - unique
+              - not_null
+          - name: ads_margin
+            description: Ads margin = operational margin - ads cost
+          - name: average_basket
+          - name: operational_margin
+          - name: ads_cost
+          - name: ads_impression
+          - name: ads_clicks
+          - name: nb_transactions
+          - name: revenue
