@@ -13,9 +13,9 @@ FROM
 JOIN
 {{ref("stg_raw__product")}}
 USING (products_id)
-)
+),
 
-SELECT
+test_function as (SELECT
 date_date,
 orders_id,
 products_id,
@@ -26,3 +26,9 @@ purchase_price,
 purchase_cost,
 revenue-purchase_cost as margin
 FROM test
+)
+
+SELECT
+*,
+    {{ margin_percent (revenue, purchase_cost) }} as margin_percent
+FROM test_function
