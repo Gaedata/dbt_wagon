@@ -56,6 +56,78 @@ sources:
             description: coûts logistiques
           - name: ship_cost
             description: frais de port
+      - name: adwords
+        identifier: raw_gz_adwords
+        description: coûts et résultats campagne pub sur adwords
+        columns:
+          - name: date_date
+            description: la date de la campagne
+          - name: paid_source
+            description: la source de la campagne
+          - name: campaign_key
+            description: l'id de la campagne
+          - name: camPGN_name
+            description: le nom de la campagne
+          - name: ads_cost
+            description: le coût de la campagne
+          - name: impression
+            description: nbre d'impressions
+          - name: click
+            description: nbre de clicks
+      - name: bing
+        identifier: raw_gz_bing
+        description: coûts et résultats campagne pub sur bing
+        columns:
+          - name: date_date
+            description: la date de la campagne
+          - name: paid_source
+            description: la source de la campagne
+          - name: campaign_key
+            description: l'id de la campagne
+          - name: camPGN_name
+            description: le nom de la campagne
+          - name: ads_cost
+            description: le coût de la campagne
+          - name: impression
+            description: nbre d'impressions
+          - name: click
+            description: nbre de clicks
+      - name: criteo
+        identifier: raw_gz_criteo
+        description: coûts et résultats campagne pub sur criteo
+        columns:
+          - name: date_date
+            description: la date de la campagne
+          - name: paid_source
+            description: la source de la campagne
+          - name: campaign_key
+            description: l'id de la campagne
+          - name: camPGN_name
+            description: le nom de la campagne
+          - name: ads_cost
+            description: le coût de la campagne
+          - name: impression
+            description: nbre d'impressions
+          - name: click
+            description: nbre de clicks
+      - name: facebook
+        identifier: raw_gz_facebook
+        description: coûts et résultats campagne pub sur facebook
+        columns:
+          - name: date_date
+            description: la date de la campagne
+          - name: paid_source
+            description: la source de la campagne
+          - name: campaign_key
+            description: l'id de la campagne
+          - name: camPGN_name
+            description: le nom de la campagne
+          - name: ads_cost
+            description: le coût de la campagne
+          - name: impression
+            description: nbre d'impressions
+          - name: click
+            description: nbre de clicks
 models:
   - name: int_sales_margin
     description: suite à la jointure sales et product
@@ -72,4 +144,60 @@ models:
         description: Operational margin = margin + shipping fee - log_cost - ship_cost
   - name: finance_days2
     description: finance calculation per days
-              
+  - name: int_campaigns
+    description: suite à la jointure de toutes les tables adwords, bing, criteo et facebook
+    columns:
+          - name: primary_key_campaign
+            description: la clé primaire
+            tests:
+              - unique
+              - not_null
+          - name: paid_source
+            tests:
+              - not_null
+          - name: campaign_name
+            tests:
+              - not_null
+          - name: ads_cost
+            tests:
+              - not_null
+          - name: impression
+            tests:
+              - not_null
+          - name: click
+            tests:
+              - not_null
+  - name: int_campaigns_day
+    description: group by de int campaigns sur la date
+    columns:
+          - name: date_date
+            description: la clé primaire
+            tests:
+              - unique
+              - not_null
+          - name: ads_cost
+            tests:
+              - not_null
+          - name: ads_impression
+            tests:
+              - not_null
+          - name: ads_clicks
+            tests:
+              - not_null
+  - name: finance_campaigns_day
+    description: résultats financiers des campagnes par jour pour la team finance
+    columns:
+          - name: date_date
+            description: la clé primaire, date du jour
+            tests:
+              - unique
+              - not_null
+          - name: ads_margin
+            description: Ads margin = operational margin - ads cost
+          - name: average_basket
+          - name: operational_margin
+          - name: ads_cost
+          - name: ads_impression
+          - name: ads_clicks
+          - name: nb_transactions
+          - name: revenue
