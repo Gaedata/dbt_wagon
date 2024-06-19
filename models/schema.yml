@@ -65,4 +65,11 @@ models:
             tests:
               - unique
               - not_null
+  - name: int_orders_operational2
+    description: operational margin calcultation per order 
+    columns:
+      - name: operational_margin 
+        description: Operational margin = margin + shipping fee - log_cost - ship_cost
+  - name: finance_days2
+    description: finance calculation per days
               
