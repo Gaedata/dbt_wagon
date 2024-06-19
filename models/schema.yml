@@ -155,23 +155,18 @@ models:
           - name: paid_source
             tests:
               - not_null
-              - dbt_utils.union_relations
           - name: campaign_name
             tests:
               - not_null
-              - dbt_utils.union_relations
           - name: ads_cost
             tests:
               - not_null
-              - dbt_utils.union_relations
           - name: impression
             tests:
               - not_null
-              - dbt_utils.union_relations
           - name: click
             tests:
               - not_null
-              - dbt_utils.union_relations
   - name: int_campaigns_day
     description: group by de int campaigns sur la date
     columns:
